@@ -9,6 +9,11 @@
 //
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
+// 
+// After the require_tree all teh .js files are inserted into this file to
+// reduce server load
+// you can type inmore js code after require_tree . line
+// they are loaded in alphabetical order
 //
 //= require jquery
 //= require jquery_ujs
