@@ -1,5 +1,5 @@
 Memberships
 * User should use link for Basic Plan on home page
 * User should use link for Pro Plan on home page
-* BAsic plan link should point to he regular Devise sign up form
+* Basic plan link should point to he regular Devise sign up form
 * Pro plan link should point to a custom sign up form
