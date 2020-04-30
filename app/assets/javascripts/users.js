@@ -3,14 +3,16 @@
 // see lesson 160
 $(document).on('turbolinks:load', function(){
   var theForm = $('#pro_form');
-  var submitBtn = $('#form-submit-btn');
+  var submitBtn = $('#form-signup-btn');
   //Set Stripe public key.
   Stripe.setPublishableKey( $('meta[name="stripe-key"]').attr('content') );
+  
   //When user clicks form submit btn,
   submitBtn.click(function(event){
     //prevent default submission behavior.
     event.preventDefault();
     submitBtn.val("Processing").prop('disabled', true);
+    
     //Collect the credit card fields.
     var ccNum = $('#card_number').val(),
         cvcNum = $('#card_code').val(),
@@ -34,7 +36,7 @@ $(document).on('turbolinks:load', function(){
       alert('The expiration date appears to be invalid');
     }
     if (error) {
-      //If there are card errors, don't send to Stripe.
+    //If there are card errors, don't send to Stripe.
       submitBtn.prop('disabled', false).val("Sign Up");
     } else {
       //Send the card info to Stripe.
@@ -47,6 +49,7 @@ $(document).on('turbolinks:load', function(){
     }
     return false;
   });
+  
   //Stripe will return a card token.
   function stripeResponseHandler(status, response) {
     //Get the token from the response.
