@@ -13,7 +13,7 @@ class ProfilesController < ApplicationController
     if @profile.save
       flash[:success] = "Profile updated!"
       #if ok go to home page
-      redirect_to user_path( params[:user_id] )
+      redirect_to user_path(id: params[:user_id] )
     else
       #if update failed show the blank form again
       render action: :new
@@ -24,6 +24,22 @@ class ProfilesController < ApplicationController
   def edit
     @user = User.find( params[:user_id] )
     @profile = @user.profile
+  end
+  
+  #PUT to /users/:user_id/profile
+  def update
+    # retrieve user from the database
+    @user = User.find( params[:user_id] )
+    # retrieve that users profile
+    @profile = @user.profile
+    # mass assign edited profile attributes and save (update)
+    if @profile.update_attributes(profile_params)    
+      flash[:success] = "Profile updated!"
+      # redirect user to their profile page
+      redirect_to user_path(id: params[:user_id] )
+    else
+      render action :edit
+    end
   end
 
   #whitelist form variables
